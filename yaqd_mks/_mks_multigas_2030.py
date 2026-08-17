@@ -37,7 +37,7 @@ class MksMultigas2030(IsDaemon):
             await asyncio.sleep(10)
 
     async def poll_gas_names(self):
-        while True: 
+        while True:
             print("POLLING GAS NAMES")
             inner = [f"<V Name=\"EVID_{1000 + n}\"/>" for n in range(self._ngasses)]
             payload = f"<?xml version=\"1.0\" encoding=\"utf-8\"?> <PollRequest>{inner}</PollRequest>"
@@ -48,7 +48,7 @@ class MksMultigas2030(IsDaemon):
     async def unpack_response(self, response):
         if response.status == 200:
             print(await response.text())
- 
+
     async def update_state(self):
         """Continually monitor and update the current daemon state."""
         # If there is no state to monitor continuously, delete this function
